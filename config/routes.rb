@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :twits
   resources :profiles, except:[:destroy]
 
   #get 'profile/:id' => 'users#show', as: 'profile'
