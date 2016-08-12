@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
 
   	respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Product was successfully created.' }
+        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -31,6 +31,21 @@ class ProfilesController < ApplicationController
   end
 
   def update
+  end
+
+  def follow
+    @profile = Profile.new
+    @user = User.find(params[:id])
+    @follow = Follow.create(follower_id: current_user.id, following_id: @user.id)
+    respond_to do |format|
+      format.js
+      format.json
+    end
+  end
+
+  def unfollow
+    @follow = Follow.find_by(follower_id: current_user.id, following_id: params[:id])
+    @follow.destroy
   end
 
   private

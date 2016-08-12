@@ -1,18 +1,10 @@
 <h1>Welcome to Tweeter!</h1>
 
 <% if user_signed_in? %>
-	<%= render 'twits/form' %>
+	<%= link_to 'New Twit', new_twit_path, remote: true %>
+	<div id='new-task'></div>
 <% end %>
 
-<div class="row">
-	<% @twits.each do |twit| %>
-		<div class="col-md-12">
-			<div class="well">
-				<%= image_tag twit.user.profile.avatar.url, class: 'thumb' %>
-				<p class="inline"><%= twit.content %></p>
-			</div>
-		</div>
-	<% end %>
-	
+<div id='twits'>
+	<%= render @twits %>
 </div>
-

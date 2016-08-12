@@ -4,7 +4,8 @@ class TwitsController < ApplicationController
   # GET /twits
   # GET /twits.json
   def index
-    @twits = Twit.all
+    #@twits = Twit.all
+    @tag = Tag.find(params[:id])
   end
 
   # GET /twits/1
@@ -24,17 +25,35 @@ class TwitsController < ApplicationController
   # POST /twits
   # POST /twits.json
   def create
-    @twit = Twit.new(twit_params)
+    @twit = Twit.create(twit_params)
+    content = @twit.content.split
+
+    content.each_with_index do |word, index|
+      if word[0] == '#'
+        if Tag.pluck(:phrase).include?(word)
+          tag = Tag.find_by(phrase: word)
+        else
+          tag = Tag.create(phrase: word)
+        end
+        tag_twits = TagTwit.create(twit_id: @twit.id, tag_id: tag.id)
+        content[index] = "<a href='/tag?id=#{tag.id}'>#{word}</a>"
+      end
+    end
+
+    @twit.content = content.join(' ')
 
     respond_to do |format|
       if @twit.save
-        format.html { redirect_to root_path :root, notice: 'Twit was successfully created.' }
+        @twits = Twit.all.reverse_order
+        format.js
+        format.html { redirect_to @twit, notice: 'Twit was successfully created.' }
         format.json { render :show, status: :created, location: @twit }
       else
         format.html { render :new }
         format.json { render json: @twit.errors, status: :unprocessable_entity }
       end
     end
+
   end
 
   # PATCH/PUT /twits/1

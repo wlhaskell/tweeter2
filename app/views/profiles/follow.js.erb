@@ -1,0 +1,2 @@
+console.log('button_pressed');
+$('#follow_<%= @follow.following_id %>').html("<%= j render partial: 'follow_button', locals: {user: @user} %>");

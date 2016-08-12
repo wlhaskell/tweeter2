@@ -8,3 +8,9 @@
 <h4>Age:</h4>
 <p><%= @user.profile.age %></p>
 
+<h4>Users I am following:</h4>
+<ul>
+	<% @user.profile.following.each do |profile| %>
+		<li><%= profile.user.username %></li>
+	<% end %>
+</ul>

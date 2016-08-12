@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
+  get 'follow' => 'profiles#follow'
+  delete 'unfollow/:id' => 'profiles#unfollow', as: 'unfollow'
+
+  get 'tag' => 'twits#index'
+
   resources :twits
+
   resources :profiles, except:[:destroy]
 
-  #get 'profile/:id' => 'users#show', as: 'profile'
+  #get 'profile/:id' => 'profiles#show', as: 'profile'
 
   root 'welcome#index'
 

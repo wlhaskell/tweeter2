@@ -8,4 +8,7 @@ class User < ActiveRecord::Base
 
   has_many :twits
 
+  has_many :following, through: :follow
+  has_many :follow
+
 end

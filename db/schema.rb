@@ -11,7 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160804012815) do
+ActiveRecord::Schema.define(version: 20160811134935) do
+
+  create_table "follows", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "following_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.integer  "age"
@@ -21,6 +28,19 @@ ActiveRecord::Schema.define(version: 20160804012815) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string   "avatar"
+  end
+
+  create_table "tag_twits", force: :cascade do |t|
+    t.integer  "tag_id"
+    t.integer  "twit_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "phrase"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "twits", force: :cascade do |t|

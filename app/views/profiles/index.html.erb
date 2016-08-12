@@ -1,11 +1,18 @@
-<h1>Showing All Users</h1>
+<h1 id="title">Showing All Users</h1>
 
 <div class="row">
 <% @users.each do |user| %>
-	<div class= "col-md-3">
-		<div class="well">
-			<h4><%= user.username %></h4>
-			<%= image_tag user.profile.avatar.url, class: "thumb" %>
+	<div class= "col-sm-3 col-xs-6">
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h4 class="panel-title"><%= user.username %></h4>
+			</div>
+			<div class="panel-body">
+				<%= image_tag user.profile.avatar.url, class: "thumb" %>
+			</div>
+			<div class="panel-footer" id="follow_<%= user.id %>">
+				<%= render partial: 'follow_button', locals: {user: user} %>
+			</div>
 		</div>
 	</div>
 <% end %>
