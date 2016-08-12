@@ -21,3 +21,6 @@ class ApplicationController < ActionController::Base
   end
 
 end
+
+#this is a small change
+#it has no effect on the code
