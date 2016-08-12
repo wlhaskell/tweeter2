@@ -1,6 +1,8 @@
 class TwitsController < ApplicationController
   before_action :set_twit, only: [:show, :edit, :update, :destroy]
 
+  #a small change
+
   # GET /twits
   # GET /twits.json
   def index
