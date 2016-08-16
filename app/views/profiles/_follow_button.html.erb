@@ -1,5 +1,5 @@
 <% if current_user.profile.following.include?(user.profile) %>
-	<%= link_to 'Unfollow', unfollow_path(user), class: 'btn btn-danger', method: :delete, remote: true %>
+	<%= link_to 'Following', unfollow_path(user), class: 'btn btn-info btn-block follow_button', method: :delete, remote: true %>
 <% else %>
-	<%= link_to 'Follow', follow_path(id: user.id), class: 'btn btn-primary', remote: true %>
+	<%= link_to 'Follow', follow_path(id: user.id), class: 'btn btn-primary btn-block follow_button', remote: true %>
 <% end %>

@@ -45,7 +45,9 @@ class ProfilesController < ApplicationController
 
   def unfollow
     @follow = Follow.find_by(follower_id: current_user.id, following_id: params[:id])
+    @user = User.find(params[:id])
     @follow.destroy
+    render :follow
   end
 
   private

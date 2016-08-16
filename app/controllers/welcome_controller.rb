@@ -1,5 +1,5 @@
 class WelcomeController < ApplicationController
   def index
-  	 @twits = Twit.all.reverse_order
+  	@twits = Twit.all.reverse_order
   end
 end

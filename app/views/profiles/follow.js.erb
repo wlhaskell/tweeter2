@@ -1,2 +1,5 @@
-console.log('button_pressed');
 $('#follow_<%= @follow.following_id %>').html("<%= j render partial: 'follow_button', locals: {user: @user} %>");
+
+$("#follow_<%= @follow.following_id %> > .follow_button").mouseout(function(){
+	$(this).hover( hoverIn,hoverOut );
+});
