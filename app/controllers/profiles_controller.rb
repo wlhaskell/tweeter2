@@ -18,7 +18,7 @@ class ProfilesController < ApplicationController
 
   	respond_to do |format|
       if @profile.save
-        format.html { if params[:user][:avatar].present?
+        format.html { if params[:profile][:avatar].present?
           render :crop  ## Render the view for cropping
         else 
           redirect_to @profile, notice: 'Profile was successfully created.'
