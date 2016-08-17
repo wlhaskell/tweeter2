@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 
+
 gem 'better_errors'
 gem 'carrierwave'
 gem 'carrierwave-aws'
+gem 'carrierwave-crop'
 gem 'mini_magick'
 gem 'bootstrap-sass'
 gem 'devise'

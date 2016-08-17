@@ -18,7 +18,12 @@ class ProfilesController < ApplicationController
 
   	respond_to do |format|
       if @profile.save
-        format.html { redirect_to @profile, notice: 'Profile was successfully created.' }
+        format.html { if params[:user][:avatar].present?
+          render :crop  ## Render the view for cropping
+        else 
+          redirect_to @profile, notice: 'Profile was successfully created.'
+        end
+        }
         format.json { render :show, status: :created, location: @product }
       else
         format.html { render :new }
@@ -56,7 +61,7 @@ class ProfilesController < ApplicationController
   	end
 
   	def profile_params
-      params.require(:profile).permit(:user_id, :bio, :age, :birthday, :avatar)
+      params.require(:profile).permit(:user_id, :bio, :age, :birthday, :avatar, :avatar_crop_x, :avatar_crop_y, :avatar_crop_w, :avatar_crop_h)
     end
 
 end
