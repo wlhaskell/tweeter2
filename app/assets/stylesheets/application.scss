@@ -12,11 +12,11 @@
  *
  *= require_tree .
  *= require_self
+ *= require jquery.jcrop
  */
 
  @import 'bootstrap';
  @import 'bootstrap-sprockets';
-
 
 .avatar {
 	width: 256px;
