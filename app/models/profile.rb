@@ -5,7 +5,7 @@ class Profile < ActiveRecord::Base
 	has_many :following, through: :follow
 
 	mount_uploader :avatar, AvatarUploader
-	crop_upladed :avatar
+	crop_uploaded :avatar
 
 
 end
